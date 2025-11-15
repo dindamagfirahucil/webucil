@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Halaman Kedua Ucil - Kucing</title>
+<style>
+body {
+  font-family:"Poppins",sans-serif; text-align:center; padding:40px;
+  background: linear-gradient(-45deg,#ffd6ff,#caffbf,#fff3b0,#a0c4ff);
+  background-size:400% 400%; animation:gradShift 15s ease infinite; color:#2d2d2d;
+}
+@keyframes gradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+h1,h2{ text-shadow:2px 2px 5px rgba(0,0,0,0.2); }
+h1{color:#5a189a; font-size:36px; margin-bottom:20px;}
+p{font-size:18px; margin:15px 0;}
+img{width:300px; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.2); margin-top:20px;}
+.button{display:inline-block; background-color:#ff7b54; color:white; padding:10px 20px; margin-top:20px; border-radius:20px; text-decoration:none; font-weight:bold; transition:0.3s;}
+.button:hover{background-color:#ff4d00; transform:scale(1.1);}
+footer{margin-top:40px; color:#555; font-size:14px;}
+button.quiz-btn{margin:5px;padding:8px 15px;border-radius:12px;border:none;background-color:#6a5acd;color:white;cursor:pointer;font-weight:bold;transition:0.3s;}
+button.quiz-btn:hover{background-color:#483d8b;transform:scale(1.05);}
+</style>
+</head>
+<body>
+
+<h1>Hai! Kita ketemu lagi 😄</h1>
+<p>Ini Unyil, kucing putih lucu yang akan menemani kita belajar tentang kucing dan segala hal menarik tentang mereka!</p>
+<img src="https://media.sciencephoto.com/c0/45/93/30/c0459330-800px-wm.jpg" alt="Unyil lucu">
+<div><img src="https://media.giphy.com/media/JIX9t2j0ZTN9S/giphy.gif" width="300" alt="Kucing bergerak lucu"></div>
+
+<h2>Penjelasan Lengkap tentang Kucing</h2>
+<p>Kucing adalah hewan mamalia yang cerdas dan sangat sosial. Mereka bisa membaca ekspresi wajah dan emosi manusia, sehingga sering menjadi teman yang bisa menenangkan pemiliknya.</p>
+<p>Kucing memiliki indra yang tajam, terutama pendengaran dan penglihatan. Mereka mampu melihat dalam gelap karena mata mereka memiliki lapisan khusus yang memantulkan cahaya.</p>
+<p>Kucing bersih dan suka merawat diri sendiri. Mereka sering menjilati bulunya untuk membersihkan dan merapikan diri, serta menjaga suhu tubuh tetap stabil.</p>
+<p>Selain itu, kucing suka bermain dengan benda bergerak, mengejar cahaya atau bola kecil, dan terkadang suka memanjat tempat tinggi. Aktivitas ini penting untuk menjaga kesehatan fisik dan mental mereka.</p>
+<p>Kucing juga membutuhkan interaksi dengan manusia dan lingkungan sekitarnya. Memberi makanan yang tepat, bermain, dan berinteraksi membuat mereka bahagia dan sehat.</p>
+<p>Unyil sendiri suka tidur di tempat hangat, bermain dengan mainan, dan kadang-kadang mengejar bayangan atau cahaya kecil. Mereka bisa menjadi teman belajar yang menyenangkan, mengurangi stres, dan membuat hari-hari lebih ceria!</p>
+<p>Kucing memiliki variasi ras, ukuran, dan warna yang beragam. Tapi perilaku mereka secara umum tetap mirip: cerdas, penasaran, dan penyayang.</p>
+
+<h2>📝 Quiz Singkat</h2>
+<div id="quizArea"></div>
+<p id="quizResult"></p>
+
+<a href="index.html" class="button">⬅️ Kembali ke Halaman Utama</a>
+
+<footer>✨ Dibuat dengan semangat oleh Ucil ✨</footer>
+
+<!-- Musik background royalty-free -->
+<audio id="bgMusic" src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" autoplay loop></audio>
+
+<script>
+let quizIndex=0;
+const quizArea=document.getElementById('quizArea');
+const quizResult=document.getElementById('quizResult');
+
+const quizzes=[
+  {q:"Apa makanan favorit kucing?", a:"Ikan", options:["Ikan","Roti","Sayur"]},
+  {q:"Kucing termasuk hewan apa?", a:"Mamalia", options:["Mamalia","Burung","Reptil"]},
+  {q:"Kucing bisa hidup berapa tahun?", a:"Sekitar 12-16 tahun", options:["Sekitar 5 tahun","Sekitar 12-16 tahun","Sekitar 20 tahun"]},
+  {q:"Kucing bisa melihat dalam gelap?", a:"Benar", options:["Benar","Salah","Kadang-kadang"]},
+  {q:"Bagaimana cara membuat kucing bahagia?", a:"Interaksi dan makanan yang tepat", options:["Hanya tidur","Interaksi dan makanan yang tepat","Tidak diberi makan"]}
+];
+
+function loadQuiz(){
+  quizArea.innerHTML='';
+  if(quizIndex<quizzes.length){
+    const q=quizzes[quizIndex];
+    const p=document.createElement('p'); p.textContent=q.q; quizArea.appendChild(p);
+    q.options.forEach(opt=>{
+      const b=document.createElement('button');
+      b.className='quiz-btn'; b.textContent=opt;
+      b.onclick=()=>checkAnswer(opt);
+      quizArea.appendChild(b);
+    });
+  } else { quizArea.style.display='none'; quizResult.textContent="🎉 Quiz selesai!";}
+}
+
+function checkAnswer(answer){
+  if(answer===quizzes[quizIndex].a){ quizResult.textContent="✅ Benar!"; quizResult.style.color='green'; }
+  else{ quizResult.textContent="❌ Salah!"; quizResult.style.color='red'; }
+  quizIndex++; loadQuiz();
+}
+
+loadQuiz();
+</script>
+
+</body>
+</html>
